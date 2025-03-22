@@ -23,7 +23,7 @@ func (r repository) Get(ctx context.Context, userID string) (*domain.User, error
 	err = r.coll.FindOne(ctx, filter).Decode(&user)
 	if err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, errors.New("user not found")
+			return nil, fmt.Errorf("%w: user not found", domain.ErrNotFound)
 		}
 		return nil, err
 	}
