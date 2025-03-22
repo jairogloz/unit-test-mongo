@@ -4,14 +4,15 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"go.mongodb.org/mongo-driver/v2/bson"
-	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
 	"unit-test-mongo/internal/domain"
 )
 
 func (r repository) Get(ctx context.Context, userID string) (*domain.User, error) {
 	// Convert string ID to ObjectID
-	objID, err := bson.ObjectIDFromHex(userID)
+	objID, err := primitive.ObjectIDFromHex(userID)
 	if err != nil {
 		return nil, fmt.Errorf("invalid user ID format '%s': %w", userID, err)
 	}

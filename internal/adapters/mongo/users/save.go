@@ -3,7 +3,7 @@ package users
 import (
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"unit-test-mongo/internal/domain"
 )
 
@@ -14,7 +14,7 @@ func (r repository) Save(ctx context.Context, user *domain.UserCreate) (string, 
 	}
 
 	// Extract the inserted ID and convert it to string
-	insertedID, ok := result.InsertedID.(bson.ObjectID)
+	insertedID, ok := result.InsertedID.(primitive.ObjectID)
 	if !ok {
 		// Convert to string if it's not already a string type
 		return fmt.Sprintf("%v", result.InsertedID), nil

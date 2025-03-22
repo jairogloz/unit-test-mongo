@@ -4,12 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func (r repository) Delete(ctx context.Context, userID string) error {
 	// Convert string ID to ObjectID
-	objID, err := bson.ObjectIDFromHex(userID)
+	objID, err := primitive.ObjectIDFromHex(userID)
 	if err != nil {
 		return fmt.Errorf("invalid user ID format '%s': %w", userID, err)
 	}
