@@ -7,6 +7,6 @@ type User struct {
 }
 
 type UserCreate struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Name string `bson:"name"`
+	Age  int    `bson:"age"`
 }

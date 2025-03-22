@@ -46,7 +46,7 @@ func TestRepository_Get(t *testing.T) {
 		mt.Run("user not found", func(mt *mtest.T) {
 			// Setup mock response for no document found
 			mt.AddMockResponses(mtest.CreateCursorResponse(
-				0, // Set count to 0 to indicate no documents
+				0,
 				"test.users",
 				mtest.FirstBatch, // Empty batch
 			))
